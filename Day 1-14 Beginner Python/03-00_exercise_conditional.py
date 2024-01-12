@@ -20,6 +20,8 @@ if height > 120:
   elif age <=18:
     bill = 7
     print(f"Youth tickets are ${bill}.")
+  elif age >= 45 and age <= 55:
+    print("Everithing is going to be OK. Have a free ride on us!")
   else:
     bill = 12
     print(f"Adult tickets are ${bill}.")
@@ -29,7 +31,7 @@ if height > 120:
     # Add $3 to their bill
     bill += 3
 
-  print(f"Your final bill is {bill}")
+  print(f"Your final bill is ${bill}")
 
 else:
   print("Sorry, you have to grow taller before you can ride.")
