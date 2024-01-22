@@ -46,6 +46,6 @@ def game():
       print(f"You have {turns} attempts remaining to guess the number.")
 
   if turns == 0:
-    print("You've run out of guesses. You lose.")
+    print(f"You've run out of guesses. The answer was {answer}. You lose.")
 
 game()
