@@ -3,16 +3,17 @@ import random
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
-MOVE_INCREMENT = 10
+MOVE_INCREMENT = 5
 
 class CarManager:
 
   def __init__(self):
     self.all_cars = []
     self.car_speed = STARTING_MOVE_DISTANCE
+    self.frequency = 6
 
   def create_car(self):
-    random_chance = random.randint(1, 6)
+    random_chance = random.randint(1, self.frequency)
 
     # to reduce the frequency of generated cars
     if random_chance == 1:
@@ -31,3 +32,7 @@ class CarManager:
 
   def level_up(self):
     self.car_speed += MOVE_INCREMENT
+    if self.frequency != 0:
+      self.frequency -= 1
+    else:
+      self.frequency = 0
