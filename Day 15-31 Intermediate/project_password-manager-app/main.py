@@ -8,6 +8,23 @@ LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
 NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 SYMBOLS = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
+# ---------------------------- SEARCH WEBSITE ------------------------------- #
+def search_website():
+  input_website = entry_website.get()
+
+  try:
+    with open("data.json", "r") as data_file:
+      data = json.load(data_file)
+  except FileNotFoundError:
+    messagebox.showinfo(title="Error", message="No data file found.")
+  else:
+    if input_website in data:
+      email = data[input_website]["email"]
+      password = data[input_website]["password"]
+      messagebox.showinfo(title=f"{input_website}", message=f"Email: {email}\nPassword: {password}")
+    else:
+      messagebox.showinfo(title="Error", message=f"No details for {input_website} exists.")
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
   entry_password.delete(0, END)
@@ -80,11 +97,11 @@ label_password = Label(text="Password:")
 label_password.grid(column=0, row=3)
 
 # Entries
-entry_website = Entry(width=50)
-entry_website.grid(column=1, row=1, columnspan=3)
+entry_website = Entry(width=32)
+entry_website.grid(column=1, row=1)
 entry_website.focus()
 
-entry_email = Entry(width=50)
+entry_email = Entry(width=51)
 entry_email.grid(column=1, row=2, columnspan=3)
 entry_email.insert(0, "email@email.com")
 
@@ -92,7 +109,10 @@ entry_password = Entry(width=32)
 entry_password.grid(column=1, row=3)
 
 # Buttons
-button_password = Button(text="Generate Password", command=generate_password)
+button_search = Button(text="Search", width=15, command=search_website)
+button_search.grid(column=2, row=1)
+
+button_password = Button(text="Generate Password", width=15, command=generate_password)
 button_password.grid(column=2, row=3)
 
 button_add = Button(text="Add", width=43, command=save)
